@@ -13,42 +13,23 @@ def consolidate_cart(cart)
  new_hash
 end
 
-# def apply_coupons(cart, coupons)
-#   # code here
-#   coupons.each{|i|
-#     item_name = i[:item]
-#     if cart.has_key?(item_name)
-#       if i[:num] <= cart[item_name][:count] && !cart.has_key?("#{item_name} W/COUPON")
-#         cart["#{item_name} W/COUPON"] = {:price => i[:cost] / i[:num], :clearance => cart[item_name][:clearance], :count => i[:num]}
-#         cart[item_name][:count] -= i[:num]
-#       elsif i[:num] <= cart[item_name][:count] && cart.has_key?("#{item_name} W/COUPON")
-#         cart["#{item_name} W/COUPON"][:count] += i[:num]
-#         cart[item_name][:count] -= i[:num]
-#       end
-#     end
-#   }
-#   cart
-# end
 def apply_coupons(cart, coupons)
-  coupons.each do |coupon|
-    if cart.keys.include? coupon[:item]
-      if cart[coupon[:item]][:count] >= coupon[:num]
-        new_name = "#{coupon[:item]} W/COUPON"
-        if cart[new_name]
-          cart[new_name][:count] += coupon[:num]
-        else
-          cart[new_name] = {
-            count: coupon[:num],
-            price: coupon[:cost]/coupon[:num],
-            clearance: cart[coupon[:item]][:clearance]
-          }
-        end
-        cart[coupon[:item]][:count] -= coupon[:num]
+  # code here
+  coupons.each{|i|
+    item_name = i[:item]
+    if cart.has_key?(item_name)
+      if i[:num] <= cart[item_name][:count] && !cart.has_key?("#{item_name} W/COUPON")
+        cart["#{item_name} W/COUPON"] = {:price => i[:cost] / i[:num], :clearance => cart[item_name][:clearance], :count => i[:num]}
+        cart[item_name][:count] -= i[:num]
+      elsif i[:num] <= cart[item_name][:count] && cart.has_key?("#{item_name} W/COUPON")
+        cart["#{item_name} W/COUPON"][:count] += i[:num]
+        cart[item_name][:count] -= i[:num]
       end
     end
-  end
+  }
   cart
 end
+
 
 def apply_clearance(cart)
   # code here
