@@ -49,7 +49,7 @@ def checkout(cart, coupons)
   clearance_cart = apply_clearance(coupons_applied)
   total = 0
   clearance_cart.each_pair{|key,value|
-    total += value[:price]
+    total += value[:price] * value[:count]
   }
   if total > 100
     total -= (total * 0.1).round(2)
