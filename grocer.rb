@@ -42,17 +42,17 @@ def apply_clearance(cart)
 end
 
 
-def checkout(cart, coupons)
-  # code here
-  consolidated_cart = consolidate_cart(cart)
-  coupons_applied = apply_coupons(consolidated_cart, coupons)
-  clearance_cart = apply_clearance(coupons_applied)
-  total = 0
-  clearance_cart.each_pair{|key,value|
-    total += value[:price]
-  }
-  if total > 100
-    total -= (total * 0.1).round(2)
-  end
-  total
-end
+# def checkout(cart, coupons)
+#   # code here
+#   consolidated_cart = consolidate_cart(cart)
+#   coupons_applied = apply_coupons(consolidated_cart, coupons)
+#   clearance_cart = apply_clearance(coupons_applied)
+#   total = 0
+#   clearance_cart.each_pair{|key,value|
+#     total += value[:price]
+#   }
+#   if total > 100
+#     total -= (total * 0.1).round(2)
+#   end
+#   total
+# end
